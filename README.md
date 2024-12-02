@@ -1,2 +1,2 @@
 # WhatsUp-Development
-This repository is used to develop a application
+This repository is used to develop a application.
