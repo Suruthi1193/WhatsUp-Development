@@ -1,0 +1,456 @@
+JAVA
+=====
+Literal String
+--------------
+String s="Hello world";
+
+NonLiteral String
+----------------=
+String s=new String("Hello");
+
+identityHashCode()-------------->fetch a mem addr of a string
+=========================================
+Array
+------
+DataType var[]=new DataType[size];
+
+DataType var[]={14,56,65,45,77};
+
+========================================
+UserDefinedException
+--------------------
+public class AgeInvalidException extends Exception{
+public String getMessage() {
+String Message="Age is not in range";
+return message;
+public static void main(String[] args) {
+int age=17;
+if(age<=18) {
+System.out.println("Age is valid");
+else {
+try {
+throw AgeInvalidExcepton();
+}
+catch(AgeInvalidException e) {
+printStackTrace();
+}
+}
+}
+
+====================================================
+FileOperation
+=============
+File f=new File("C:\\java\\file");
+boolean file=f.mkdirs();
+System.out.println(file);
+------------------------------------
+File f=new File("c:\\java\\file\\file.txt");
+boolean file=f.createNewFile();
+FileUtils.write(file,"Hello world",true);------>true for write not to override
+FileUtils.write(file,"welcome back",false);---->false for override a message
+==================================================
+Constructor
+----------
+public class Login {
+public Login() {
+
+}
+}
+=====================================================================================
+SELENIUM
+========
+Actions
+=======
+Actions a=new Actions(webDriver ref);
+a.moveToElement(webEle ref).perform();
+Methods
+-------
+moveToElement()
+dragAndDrop()
+keyUp()
+keyDown()
+doubleClick()
+contextClick()
+perform()
+==========================================
+Robot
+=====
+Robot r=new Robot();
+r.keyPress(KeyEvent.VK_ENTER);
+r.keyRelease(KeyEvent.VK_ENTER);
+Methods
+-------
+keyuPress()
+keyRelease()
+=========================================
+Alert
+-----
+Alert a=driver.switchTo().alert();
+Types
+-----
+Simple alert
+Confirm alert
+Prompt alert
+=========================================
+JavascriptExecutor
+------------------
+JavascriptExecutor js=(JavascriptExecutor)driver;
+js.executeScript("arguments[0].setAttribute('value','value which want to be entered')",ref);---->for sendkeys
+js.executeScript("arguments[0].click()",ref);---------------------------------------------------->click
+js.executeScript("return arguments[0].getAttribute('value')")------------------------------------>getText
+js.executeScript("return arguments[0].gatAttribute('att name')");-------------------------------->getAttribute
+js.executeScript("arguments[0].scrollIntoView(true)");------------------------------------------->scrollDown
+js.execeuteScript("argumrnts[0].scrollIntoView(false)");----------------------------------------->scrollUp
+========================================
+Screenshot
+----------
+TakeScreenshot tk=(TakeScrennshot)driver;
+File f1=tk.getScreenshotAs(Output.File);
+File f2=new File("file loc");
+FileUtils.copyFile(f1,d1);
+=========================================
+Frames
+------
+driver.switchTo().frame("String id/name")
+driver.switTo().frame(ref)
+	WebElement ref=driver.findElement(By.xpath(" gbrgbR"));
+driver.switchTo().frame(index)
+	WebElement ref=driver.findElement(By.tagName("iFrame"));
+	int allFrames=ref.size();
+=========================================
+DropDownSyntax
+-------------
+Select s=new Select(WebEle ref);
+Methods
+--------
+selectByValue()
+selectByIndex()
+selectByVisibleText()
+isMultiple()
+getOptions()
+getFirstSelectedOption()
+getAllSelectedOptions()
+deSelectByVAlue()
+deSelectByVisibleText()
+deSelectByIndex()
+deSelectAll()
+
+WebELemnt ref=driver.findElement(By.id("dfg"));
+Select s=new Select(ref);
+s.selectByValue("fdgh");
+s.selectByVisibleText("VDBGFNH")
+==========================================
+
+WindowsHandling
+---------------
+driver.switchTo().window(string windowsId)
+String parId=driver.getWindowHandle()
+Set<String> allId=driver.getWindowHandles()
+List<String> li=new LinkedList<>(allId)
+driver.switchTo().window(li.get(2));
+==========================================
+WebTable
+--------
+List<WebElement> allTab=driver.findElements(By.tagName("table"));
+System.out.println(allTab.size());
+WebElement tab=driver.findElement(By.id("Customers"));
+WebElement allRow=driver.findElements(By.tagName("tr");
+WebElement rowThird=allRow.get(3);
+WebElement col=driver.findElements(By.tagName("td"));
+String eachCol=col.getText();
+==========================================
+Waits
+-----
+1.ImplicitlyWait
+----------------
+driver.manage().timeOuts().implicitlyWait(Duration.ofSeconds(time));
+
+2.Explicitly Wait
+-----------------
+a)WebDriverWait
+----------------
+WebDriverWait w=new WebDriverWait(driver,Duration.ofSeconds(time));
+w.until(ExpectedConditions.alertIsPresent());
+Methods
+-------
+alertIsPresent()
+titleContains()
+elementToclickable()
+elementToSelected()
+visibilityOfElementLocated()
+
+b)FluentWait
+------------
+Wait<WebDriver> w=new FlentWait<>(Driver)
+			 .withTimeOut(Duration.ofSEconds(time))
+			 .pollingEvery(Duration.ofMilliSeconds(time))
+			 .ignoring(EXception.class);
+==================================================================
+Framework
+==========
+DataDriven
+---------
+File f=new F0ile("excel File loc");
+FileInputStream fin=new FileInputStream(f);
+Workbook bk=new XSSFWorkbook(fin);
+Sheet sh=bk.getSheet("Sheet name");
+Row allRow=sh.getRow();
+Row rowThird=allRow.get(2);
+int rowCount=sh.getPhysicalNumberOfRows();
+Cell c=rowThird.getCell();
+int allCell=rowThird.getPhysicalNumberOfCells
+();
+
+boolean type=c.getCellType();
+if(type==1) {
+String input=c.getStringCellValue();
+System.out.println(input);
+}
+elseif(DateUtil.isCellDateFormatted(c) {
+Date da=c.getDateCellValue();
+SimpleDateFormat sim=new SimpleDateFormat();
+String input=sim.format(da);
+System.out.println(input);
+
+}
+else {
+double d=c.getNumericCellValue();
+long l=(long)d;
+String input=String.valueOf(l);
+System.out.println(input);
+}
+=========================================================
+POM
+---
+public class FbPojo {
+public FbPojo() {
+PageFactory.initElements(driver,this);
+
+@FindBy(id="email")
+private WebElement userName;
+public WebElement getUserName() {
+return userName;
+
+@FindBys({@FindBy(id="email"),@FindBy(name="mail")})
+private WebElement password;
+public WebElement getPassword() {
+return passWord;
+ 
+@FindBys({@FindBy(id="name"),@FindBy(name="fghjk")})
+Assert.assertTrue("msg"
+,cond)
+=========================================================
+JUnit
+-----
+TYpe 1----->it ll declared before(outside) the class
+------
+@RunWith(Suite.class)
+@SuiteClassses(A.class,B.class)
+
+Type 2----->it ll be declared inside the class
+------
+JUnitCore.runClasses(A.class,B.class)
+=============================================================
+Testng
+------
+Parameters
+----------
+class file
+----------
+@Parameters("login")
+@Test
+private void tc1(@Optional("Selenium")String val1,String val2) {
+}
+Xml file
+--------
+<suite name="Suite">
+<parameter name="login" value="Suruthi"></parameter>
+<parameter name="password" value="GAbby"></parameter>
+<test name="Test">
+<classes>
+<class name="org.tng.Suite"/>
+<class name="org.tng.group"/>
+</classes>
+</test>
+</suite>
+====================================================
+Dataprovider
+============
+@Test(dataProvider="login")
+private void login(String val1,String val2) {
+}
+
+@DataProvider(name="login")
+public Object[][] loginDatas() {
+return new Obkject[][] {
+{"suruthi","selenium"},
+{"Prasath","Gabby"},
+{"neha","Subi"}
+};
+}
+
+
+======================================================
+Grouping
+========
+@Test(groups={"smoke","sanity"})
+
+
+Xml file
+--------
+<suite name="Suite">
+<test name="Test">
+<groups>
+<run>
+<include name="smoke"></incluide>
+<exclue name="Sanity"></exclude>
+</run>
+</groups>
+<classes>
+<class name="org.tng.login"/>
+<class name="org.tng.class"/>
+</classes>
+</test>
+</suite>
+========================================================
+
+Parallel execution
+------------------
+public class Parallel {
+WebDriver driver;
+@Parameters("Browser")
+@Test
+private void tc1(String brow) {
+if(bro.contains("rom")) {
+WebDriverManager.ChromeDriver.setup();
+driver=new ChromeDriver();
+}
+else if(brow.startsWith("ff")) {
+WebDriverManager.FirefoxDriver.setup();
+driver=new FirefoxDriver();
+}
+else {
+WebDriverMAnager.EdgeDriver.setup();
+driver=new EdgeDriver();
+}
+driver.get("url");
+}
+xml file
+---------
+<suite name="Suite" parallel="tests" thread-count="3">
+<test name="ChromeTest">
+<parameter name="Browser" value="chrome"></parameter>
+<test>
+<classes>
+<class name=/org.tng.Parallel">
+</classes>
+</test>
+<test name="FirefoxTest" >
+<parameter name="Browser" value="ff"></parameter>
+<test>
+<classes>
+<class name="org.tng.Parallel">
+</classes>
+</test>
+<test name="EdgeTest">
+<parameter name="Browser" value="edge"></parameter>
+<test>
+<classes
+>
+<class name="org.tng.Parallel">
+</classes>
+</test> <!-- Test -->
+</suite> <!-- Suite -->
+=======================================================
+Rerun
+=====
+<suite name="Suite">
+<listeners>
+<listener class-name="org.tng.AllFailed"></listener>
+</listeners>
+<test name="Test">
+<classes>
+<class name="org.tng.rerun"/>
+</classes>
+</test>
+<suite>
+
+public class AllFailed implements IAnnotationTransformer {
+public void transform(ITestAnnottaion r,Class testClass,Constructor testConstructor,Method testMethod) {
+IRetryAnalyzer res=r.getRetryAnalyzer();
+if(res==null) {
+r.setRetryAnalyzer(ReRunner.class);
+}
+}
+
+
+public class ReRunner implements IRetryAnalyzer {
+int min=1,max=3;
+public boolean retry(ITestResult arg0) {
+if(min<=max) {
+min++;
+return true;
+}
+else {
+return false;
+}
+}
+============================================================
+CUCUMBER
+========
+Background
+----------
+Feature: To validate fb login page
+Background:
+Given ente fb login page
+Scenario: To validate login using valid username and invalid password 
+When enter valid username and invalid password
+And click login button
+Then enterinvalid credential page
+---------------------------------------------------------------------
+Hooks
+-----
+public class Hooks extends BaseClass {
+@Before(order=1)
+public void befSce() {
+openChromeBrowser();
+maxWindow();}
+
+@After(order=3)
+public void aftSce() {
+colseBrowser();
+}
+
+=====================================================================
+Scenario outline:
+----------------
+Feature: To validate fb login page
+Given ente fb login page
+Scenario outline: To validate "<Username>" and "<Password>"
+When enter valid username and invalid password
+And click login button
+Then enterinvalid credential page
+
+Examples:
+|Username|Password|
+|Suruthi|Selenium|
+|Prasath|Java|
+|Gabby|Selenium|
+|Neha|social|
+==========================================================================
+Tags
+----
+@smoke
+Scenario:validate the login password
+
+tags={"@smoke,@sanity"}------->OR Operator
+tags={"@smoke or @Saniyt"}----->OR Operator
+tags={"@smoke","@sanity"}------->AND Operator
+tags={"@smoke" and "@Sanity"}---->AND Operator
+tags={"not@smoke"} or tags={"-@smoke"}
+========================================================================
+
+
+
+
+
